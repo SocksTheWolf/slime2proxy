@@ -56,3 +56,5 @@ export async function loadScript(id: string, src: string) {
     }
   })
 }
+
+export const getANewTokenLink: string = `https://make.twitchauth.work/login?app=27785495-cdf7-4567-9e61-68dd802b8f5b`;

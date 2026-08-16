@@ -145,5 +145,8 @@ namespace Slime2 {
     type TokenResponse = {
       token: string
     }
+    type MTAWTokenResponse = {
+      access_token: string
+    }
   }
 }

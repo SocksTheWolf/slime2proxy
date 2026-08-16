@@ -1,3 +1,4 @@
+import { getANewTokenLink } from '@/services/helpers'
 import Banner from './Banner'
 
 type ErrorBannerProps = {
@@ -14,12 +15,12 @@ export default function ErrorBanner({
       <strong className='font-semibold'>Key Invalid</strong>: {message} Download
       a new key from [
       <a
-        href='https://slime2.stream/account'
+        href={getANewTokenLink}
         target='_blank'
         rel='noreferrer'
         className='text-rose-200 underline'
       >
-        slime2.stream/account
+        {getANewTokenLink}
       </a>
       ].
     </Banner>

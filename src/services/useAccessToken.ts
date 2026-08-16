@@ -1,11 +1,11 @@
 import { useClient } from '@/contexts/client/useClient'
-import { infiniteCache } from '@/services/helpers'
+import { getANewTokenLink, infiniteCache } from '@/services/helpers'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 const slime2Api = axios.create({
-  baseURL: 'https://slime2.stream/api',
+  baseURL: 'https://make.twitchauth.work',
 })
 
 export default function useAccessToken(provider: Slime2.Auth.Provider) {
@@ -44,18 +44,23 @@ export async function getAccessToken(
   key?: string,
 ): Promise<string> {
   if (!key) throw new KeyNotFoundError(`Key not found for platform ${provider}`)
+  if (provider !== "twitch") throw new KeyNotFoundError(`${provider} not supported`)
 
   return slime2Api
-    .get<Slime2.Api.TokenResponse>(`/auth/${provider}/token`, {
-      headers: { Authorization: `Bearer ${key}` },
+    .post<Slime2.Api.MTAWTokenResponse>(`/get`, {
+      data: key,
+      headers: {
+        /*Authorization: `Bearer ${key}`*/
+        "Content-Type": "text/plain"
+      },
     })
-    .then(response => response.data.token)
+    .then(response => response.data.access_token)
     .catch(error => {
-      const errorMessage = `Invalid key for platform ${provider}, download a new one from https://slime2.stream/account`
+      const errorMessage = `Invalid key for platform ${provider}, download a new one from ${getANewTokenLink}`
       console.error(errorMessage, error)
 
       throw new KeyInvalidError(
-        `Invalid key for platform ${provider}, download a new one from https://slime2.stream/account`,
+        `Invalid key for platform ${provider}, download a new one from ${getANewTokenLink}`,
         { cause: error },
       )
     })

@@ -57,7 +57,7 @@ function ProfilePicture({ image, platform }: ProfilePictureProps) {
   if (imageError) {
     return (
       <img
-        src={`https://slime2.stream/assets/${platform}-logo.svg`}
+        src={`https://make.twitchauth.work/img/${platform}-logo.svg`}
         height={providerLogoSize}
         width={providerLogoSize}
         alt='Stream Platform Logo'
@@ -78,7 +78,7 @@ function ProfilePicture({ image, platform }: ProfilePictureProps) {
       />
 
       <img
-        src={`https://slime2.stream/assets/${platform}-logo.svg`}
+        src={`https://make.twitchauth.work/img/${platform}-logo.svg`}
         height={providerLogoSize}
         width={providerLogoSize}
         alt='Stream Platform Logo'
