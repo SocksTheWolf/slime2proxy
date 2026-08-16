@@ -47,8 +47,7 @@ export async function getAccessToken(
   if (provider !== "twitch") throw new KeyNotFoundError(`${provider} not supported`)
 
   return slime2Api
-    .post<Slime2.Api.MTAWTokenResponse>(`/get`, {
-      data: key,
+    .post<Slime2.Api.MTAWTokenResponse>(`/get`, key, {
       headers: {
         /*Authorization: `Bearer ${key}`*/
         "Content-Type": "text/plain"

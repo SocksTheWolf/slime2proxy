@@ -1,6 +1,6 @@
 export const auth: Slime2.Auth.Settings = {
   twitch: {
-    clientId: 'xrjkdmui65qd33jdx8itfslt61qys8',
+    clientId: '72ngv9amto8x090vkn3p93nosqmgt5',
     scopes: [
       'chat:read',
       'channel:read:redemptions',
